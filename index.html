@@ -30,29 +30,33 @@
 <body class="w3-content main-body">
 
     <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top nav-menu" id="mySidebar">
+    <button class="w3-button w3-large w3-circle w3-xlarge w3-grey menu-bar-button" onclick="openClose(true)">
+        <i class="fa fa-bars"></i>
+    </button>
+    <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top nav-menu menu-over" id="sidebar">
+
         <div class="menu-background">
-            <div class="w3-container w3-display-container w3-padding-16">
+            <div class="w3-container w3-display-container w3-padding-16 no-mobile-menu-header">
                 <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
                 <h3 class="w3-wide"><b>Begin Smart Javascript</b></h3>
             </div>
             <div id="programs-list" class="w3-padding-64 w3-large w3-text-grey">
-                <!-- <a href="#" class="w3-bar-item w3-button">Shirts</a> -->
+
             </div>
         </div>
     </nav>
 
     <!-- Top menu on small screens -->
-    <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-        <div class="w3-bar-item w3-padding-24 w3-wide">Begin Smart Javascript</div>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge menu-over">
+        <div class="w3-bar-item w3-padding-24 w3-wide menu-mobile-header">Begin Smart Javascript</div>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="openClose()"><i class="fa fa-bars"></i></a>
     </header>
 
     <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlay"></div>
 
     <!-- !PAGE CONTENT! -->
-    <div class="w3-main">
+    <div class="w3-main code-area menu-impact">
 
 
         <!-- Push down content on small screens -->

@@ -18,6 +18,7 @@ function bootstrapTemplate(bgnSmJS) {
 
 
             $('#'+bgnSmJS.menuContainer.id).append(menuCorrespondingTemplate);
+
             $('#'+bgnSmJS.codesContainer.id).append(item.correspondingTemplate);
 
             if(i+1==bgnSmJS.jsList.length){
@@ -75,13 +76,11 @@ $(document).ready(function(){
     })
     .then(function() {
 
-        /*var jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
-            lineNumbers: true,
-            mode: 'javascript',
-            theme: 'material',
-        });*/
+        $('#'+bgnSmJS.menuContainer.id).find('a').on('click',function() {
+            openClose();
+        });
+
         $('textarea').each(function(i,dom) {
-            console.log(dom);
             var jsEditor = CodeMirror.fromTextArea(dom, {
                 lineNumbers: true,
                 mode: 'javascript',
