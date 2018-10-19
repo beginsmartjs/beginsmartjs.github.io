@@ -24,13 +24,25 @@ function openClose(desktop) {
     }
     if(this.state){
         $("#sidebar").animate({left: "0%"});
-        $(".menu-bar-button").animate({left: "300px"});
+
+
+        $(".menu-bar-button")
+        .animate({left: "300px"})
+        .toggleClass("change");
+
+
+
         $(".code-area").addClass("menu-impact");
     }
     else{
 
         $("#sidebar").animate({left: "-100%"});
-        $(".menu-bar-button").animate({left: "0px"});
+        
+        $(".menu-bar-button")
+        .animate({left: "0px"})
+        .toggleClass("change");
+
+
         $(".code-area").removeClass("menu-impact");
 
     }
