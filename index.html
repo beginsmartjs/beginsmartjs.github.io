@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Begin Smart Javascript</title>
-</head>
-<body background="alice">
-	<div style="text-align: center;">
-		<h3>We are going to tutor many logics from the perspective </h3>
-		<h3>of Javascript </h3>
-		<h1>So buckle your seats</h1>
-		<div>We are coming soon...</div>
-	</div>
+<title>Begin Smart Js</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./highlightstyles/monokai-sublime.css">
+<link rel="stylesheet" href="./style/default.css">
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+
+<body class="w3-light-grey w3-content">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <div class="w3-container">
+
+            <h4><b>Javascript</b></h4>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#palindrome-number" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">
+                Check Palindrome Number
+            </a>
+            <a href="#prime-number" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">
+                Check Prime Number
+            </a>
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div id="codes-container" class="w3-main">
+    </div>
+
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./highlight.pack.js"></script>
+<script src="./js/services/apiServices.js"></script>
+<script src="./js/script.js"></script>
+
 </html>

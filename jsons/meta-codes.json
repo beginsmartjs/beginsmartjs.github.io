@@ -1,0 +1,10 @@
+[
+  {
+    "id": "palindrome-number",
+    "header": "Check Palindrome Number"
+  },
+  {
+    "id": "prime-number",
+    "header": "Check Prime Number"
+  }
+]
