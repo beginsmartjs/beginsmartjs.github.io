@@ -3,14 +3,21 @@
     "id": "palindrome-number",
     "header": "Check Palindrome Number",
     "default":{
-    	"returnType":"number"
+    	"returnType":"boolean"
     }
   },
   {
     "id": "prime-number",
     "header": "Check Prime Number",
     "default":{
-    	"returnType":"number"
+      "returnType":"boolean"
+    }
+  },
+  {
+    "id": "leap-year",
+    "header": "Check Leap Year",
+    "default":{
+    	"returnType":"boolean"
     }
   }
 ]
