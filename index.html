@@ -6,9 +6,11 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/material.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/theme/material.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/addon/display/fullscreen.css'>
 <link rel='stylesheet' href='style/default.css'>
 <style>
     .w3-sidebar a {
@@ -30,7 +32,7 @@
 <body class="w3-content main-body">
 
     <!-- Sidebar/menu -->
-    <button class="w3-button w3-large w3-circle w3-xlarge w3-grey menu-bar-button change" onclick="openClose(true)">
+    <button class="w3-button w3-large w3-circle w3-xlarge w3-grey menu-bar-button change" onclick="toggle(true)">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
@@ -51,7 +53,7 @@
     <!-- Top menu on small screens -->
     <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge menu-over">
         <div class="w3-bar-item w3-padding-24 w3-wide menu-mobile-header">Begin Smart Javascript</div>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="openClose()"><i class="fa fa-bars"></i></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="toggle()"><i class="fa fa-bars"></i></a>
     </header>
 
     <!-- Overlay effect when opening sidebar on small screens -->
@@ -75,11 +77,12 @@
 </body>
 <!-- Frameworks -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/xml/xml.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/css/css.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/javascript/javascript.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/htmlmixed/htmlmixed.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/codemirror.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/xml/xml.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/css/css.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/javascript/javascript.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/mode/htmlmixed/htmlmixed.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.40.2/addon/display/fullscreen.js'></script>
 
 
 <!-- Code files -->

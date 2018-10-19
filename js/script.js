@@ -1,3 +1,5 @@
+'use strict';
+
 /*Services*/
 var apiServices = apiServices();
 
@@ -11,7 +13,7 @@ function bootstrapTemplate(bgnSmJS) {
         .then(function(response) {
             item.codeString = response;
             item.function = new Function("return ("+response+")")();
-            for(key in item){
+            for(var key in item){
                 item.correspondingTemplate = item.correspondingTemplate.replace('{*'+key+'*}',item[key]);
                 menuCorrespondingTemplate = menuCorrespondingTemplate.replace('{*'+key+'*}',item[key]);
             }
@@ -77,17 +79,53 @@ $(document).ready(function(){
     .then(function() {
 
         $('#'+bgnSmJS.menuContainer.id).find('a').on('click',function() {
-            openClose();
+            toggle();
         });
 
-        $('textarea').each(function(i,dom) {
-            var jsEditor = CodeMirror.fromTextArea(dom, {
+        $('.code-reader').each(function(i,codeReader) {
+            var textAreaDom = $(codeReader).find('textarea')[0];
+            var jsEditor = CodeMirror.fromTextArea(textAreaDom, {
                 lineNumbers: true,
                 mode: 'javascript',
                 theme: 'material',
-                indentUnit: 4
+                indentUnit: 4,
+                extraKeys: {
+                    "F11": function(cm) {
+                        if(!cm.getOption("fullScreen"))
+                            close();
+                        else
+                            open();
+
+                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    },
+                    "Esc": function(cm) {
+                        if(toggle.state)
+                            open();
+                        $('.menu-over').removeClass("w3-hide");
+                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                    }
+                }
             });
-        })
+
+
+            $(codeReader).find('.fullscreen').on('click',function() {
+                if(!jsEditor.getOption("fullScreen")){
+                    if(toggle.state === undefined && document.body.clientWidth >= 986)
+                        toggle.state = true;
+
+                    $('.menu-over').addClass("w3-hide");
+                    close();
+                }
+                else{
+                    $('.menu-over').removeClass("w3-hide");
+                    open();
+                }
+                jsEditor.setOption("fullScreen", !jsEditor.getOption("fullScreen"));
+                jsEditor.focus();
+            });
+
+        });
+
 
         bgnSmJS.jsListForEach(function(item,i) {
             addTestingModule(item);

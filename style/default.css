@@ -34,6 +34,16 @@
 
 
 /*end menu icon*/
+/*editor icons*/
+.fullscreen{
+	cursor: pointer;
+}
+.fullscreen:hover{
+	transform: scale(1.2);
+    -webkit-transition: transform 0.4s; /* Safari */
+    transition: transform 0.4s;
+}
+/*end editor icons*/
 
 .main-body{
 	max-width: 1400px;
@@ -47,7 +57,7 @@
 }
 .menu-mobile-header{
     overflow: hidden;
-    width: 380px!important;
+    width: 78%!important;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
