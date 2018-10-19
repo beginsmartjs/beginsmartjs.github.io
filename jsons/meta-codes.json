@@ -1,10 +1,16 @@
 [
   {
     "id": "palindrome-number",
-    "header": "Check Palindrome Number"
+    "header": "Check Palindrome Number",
+    "default":{
+    	"returnType":"number"
+    }
   },
   {
     "id": "prime-number",
-    "header": "Check Prime Number"
+    "header": "Check Prime Number",
+    "default":{
+    	"returnType":"number"
+    }
   }
 ]

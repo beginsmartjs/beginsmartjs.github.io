@@ -6,18 +6,14 @@ function bootstrapTemplate(bgnSmJS) {
     var dfd = jQuery.Deferred();
     bgnSmJS.jsList.forEach(function(item,i) {
         item.correspondingTemplate = bgnSmJS.codesContainer.listTemplate;
-        var  menuCorrespondingTemplate = bgnSmJS.menuContainer.menuTemplate;
         apiServices.getCode(item.id)
         .then(function(response) {
             item.codeString = response;
             item.function = new Function("return ("+response+")")();
             for(key in item){
                 item.correspondingTemplate = item.correspondingTemplate.replace('{*'+key+'*}',item[key]);
-                menuCorrespondingTemplate = menuCorrespondingTemplate.replace('{*'+key+'*}',item[key]);
             }
 
-
-            $('#'+bgnSmJS.menuContainer.id).append(menuCorrespondingTemplate);
             $('#'+bgnSmJS.codesContainer.id).append(item.correspondingTemplate);
 
             if(i+1==bgnSmJS.jsList.length){
@@ -44,10 +40,6 @@ function addTestingModule(item) {
 $(document).ready(function(){
     var bgnSmJS = {
         jsList:[],
-        menuContainer:{
-            id:"programs-list",
-            menuTemplate:"<a href=\"#{*id*}\" class=\"w3-bar-item w3-button\">{*header*}</a>"
-        },
         codesContainer:{
             id: "codes-container",
             listTemplate:""
@@ -74,22 +66,10 @@ $(document).ready(function(){
         return bootstrapTemplate(bgnSmJS);
     })
     .then(function() {
-
-        /*var jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
-            lineNumbers: true,
-            mode: 'javascript',
-            theme: 'material',
-        });*/
-        $('textarea').each(function(i,dom) {
-            console.log(dom);
-            var jsEditor = CodeMirror.fromTextArea(dom, {
-                lineNumbers: true,
-                mode: 'javascript',
-                theme: 'material',
-                indentUnit: 4
-            });
-        })
-
+        hljs.configure({
+            tabReplace:'    '
+        });
+        hljs.initHighlighting();
         bgnSmJS.jsListForEach(function(item,i) {
             addTestingModule(item);
         });

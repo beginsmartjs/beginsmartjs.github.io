@@ -5,3 +5,25 @@
 .w3-main .w3-container{
 	margin-bottom: 20px;
 }
+
+.main-body{
+	max-width: 1400px;
+}
+
+.nav-menu{
+	width: 290px;
+	z-index: 5;
+}
+.menu-background{
+	background: black;
+	height: inherit;
+	color:white;
+	z-index:5;
+	width:inherit;
+}
+
+@media (min-width: 993px){
+	.w3-sidebar.w3-collapse {
+	    display: block!important;
+	}
+}
