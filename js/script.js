@@ -14,8 +14,9 @@ function bootstrapTemplate(bgnSmJS) {
             item.codeString = response;
             item.function = new Function("return ("+response+")")();
             for(var key in item){
-                item.correspondingTemplate = item.correspondingTemplate.replace('{*'+key+'*}',item[key]);
-                menuCorrespondingTemplate = menuCorrespondingTemplate.replace('{*'+key+'*}',item[key]);
+                var pattern = new RegExp("{\\*"+key+"\\*}",'g');
+                item.correspondingTemplate = item.correspondingTemplate.replace(pattern,item[key]);
+                menuCorrespondingTemplate = menuCorrespondingTemplate.replace(pattern,item[key]);
             }
 
 
@@ -65,7 +66,9 @@ $(document).ready(function(){
             })
             
         }
-    }
+    };
+
+    var selectedEditor,currentState;
 
     apiServices.getMetaCodes()
     .then(function(response) {
@@ -91,10 +94,15 @@ $(document).ready(function(){
                 indentUnit: 4,
                 extraKeys: {
                     "F11": function(cm) {
-                        if(!cm.getOption("fullScreen"))
+                        if(!cm.getOption("fullScreen")){
                             close();
-                        else
+
+                        }
+                        else{
                             open();
+                        }
+
+                        console.log(!cm.getOption("fullScreen"));
 
                         cm.setOption("fullScreen", !cm.getOption("fullScreen"));
                     },
@@ -112,6 +120,7 @@ $(document).ready(function(){
                 if(!jsEditor.getOption("fullScreen")){
                     if(toggle.state === undefined && document.body.clientWidth >= 986)
                         toggle.state = true;
+                    
 
                     $('.menu-over').addClass("w3-hide");
                     close();
@@ -122,6 +131,16 @@ $(document).ready(function(){
                 }
                 jsEditor.setOption("fullScreen", !jsEditor.getOption("fullScreen"));
                 jsEditor.focus();
+
+                /*Set selected Editor*/
+                selectedEditor = jsEditor;
+            });
+
+            $(window).on('popstate', function(event,data) {
+                if(jsEditor.getOption("fullScreen") && location.hash.indexOf('fullscreen') === -1){
+                    jsEditor.setOption("fullScreen", false);
+                }
+
             });
 
         });
