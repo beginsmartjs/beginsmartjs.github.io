@@ -138,6 +138,7 @@ $(document).ready(function(){
 
             $(window).on('popstate', function(event,data) {
                 if(jsEditor.getOption("fullScreen") && location.hash.indexOf('fullscreen') === -1){
+                    $('.menu-over').removeClass("w3-hide");
                     jsEditor.setOption("fullScreen", false);
                 }
 
