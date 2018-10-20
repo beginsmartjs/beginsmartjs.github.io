@@ -1,27 +1,21 @@
 'use strict';
 
 function open() {
-    // toggle.state = true;
 
     $("#sidebar").animate({left: "0%"});
 
-
     $(".menu-bar-button")
     .animate({left: "300px"});
-
-
 
     $(".code-area").addClass("menu-impact");
 }
 
 function close() {
-    // toggle.state = false;
 
     $("#sidebar").animate({left: "-100%"});
 
     $(".menu-bar-button")
     .animate({left: "0px"});
-
 
     $(".code-area").removeClass("menu-impact");
 }

@@ -95,14 +95,14 @@ $(document).ready(function(){
                 extraKeys: {
                     "F11": function(cm) {
                         if(!cm.getOption("fullScreen")){
+
+                            selectedEditor = jsEditor;
                             close();
 
                         }
                         else{
                             open();
                         }
-
-                        console.log(!cm.getOption("fullScreen"));
 
                         cm.setOption("fullScreen", !cm.getOption("fullScreen"));
                     },
@@ -120,6 +120,8 @@ $(document).ready(function(){
                 if(!jsEditor.getOption("fullScreen")){
                     if(toggle.state === undefined && document.body.clientWidth >= 986)
                         toggle.state = true;
+
+                    selectedEditor = jsEditor;
                     
 
                     $('.menu-over').addClass("w3-hide");
@@ -132,17 +134,19 @@ $(document).ready(function(){
                 jsEditor.setOption("fullScreen", !jsEditor.getOption("fullScreen"));
                 jsEditor.focus();
 
-                /*Set selected Editor*/
-                selectedEditor = jsEditor;
             });
 
-            $(window).on('popstate', function(event,data) {
-                if(jsEditor.getOption("fullScreen") && location.hash.indexOf('fullscreen') === -1){
-                    $('.menu-over').removeClass("w3-hide");
-                    jsEditor.setOption("fullScreen", false);
-                }
 
-            });
+        });
+
+        $(window).on('popstate', function(event,data) {
+            if(location.hash.indexOf('fullscreen') === -1){
+                if(toggle.state)
+                    open();
+                
+                $('.menu-over').removeClass("w3-hide");
+                selectedEditor.setOption("fullScreen", false);
+            }
 
         });
 
