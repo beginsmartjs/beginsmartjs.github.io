@@ -2,6 +2,7 @@
 
 /*Services*/
 var apiServices = apiServices();
+var validationServices = validationServices();
 
 
 function bootstrapTemplate(bgnSmJS) {
@@ -20,9 +21,9 @@ function bootstrapTemplate(bgnSmJS) {
             }
 
 
-            $('#'+bgnSmJS.menuContainer.id).append(menuCorrespondingTemplate);
+            item.menuDom = $(menuCorrespondingTemplate).appendTo('#'+bgnSmJS.menuContainer.id);
+            item.templateDom = $(item.correspondingTemplate).appendTo('#'+bgnSmJS.codesContainer.id);
 
-            $('#'+bgnSmJS.codesContainer.id).append(item.correspondingTemplate);
 
             if(i+1==bgnSmJS.jsList.length){
                 dfd.resolve(bgnSmJS);
@@ -34,15 +35,42 @@ function bootstrapTemplate(bgnSmJS) {
     return dfd.promise();
 }
 
+function validateValue(value) {
+    if(isNaN(value)){
+        return false;
+    } else {
+        value = +value;
+        if(validationServices.isInt(value)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 function addTestingModule(item) {
-    var testContainer = $('#'+item.id+' .test-container');
+
+    var testContainer = item.templateDom.find('.test-container');
     testContainer.find('button').on('click',function(event) {
         var value = testContainer.find('input').val();
-        value = +value;
-        var result = item.function(value);
+        if(validateValue(value)){
+            value = +value;
+            var result = item.function(value);
+        } else {
+            var result = "Invalid Input";    
+        }
         testContainer.find('.result').html(result+"");
     });
+}
+
+function compileErrorModule(errStatus,item) {
+    var compileContainer = item.templateDom.find('.compile-container');
+    if(errStatus){
+        compileContainer.find('.error-box').show();
+        compileContainer.find('.error-content').text(item.functionError);
+    } else {
+        compileContainer.find('.error-box').hide();
+    }
 }
 
 $(document).ready(function(){
@@ -85,8 +113,9 @@ $(document).ready(function(){
             toggle();
         });
 
-        $('.code-reader').each(function(i,codeReader) {
-            var textAreaDom = $(codeReader).find('textarea')[0];
+        bgnSmJS.jsListForEach(function(item,i) {
+
+            var textAreaDom = item.templateDom.find('textarea')[0];
 
 
             var jsEditor = CodeMirror.fromTextArea(textAreaDom, {
@@ -117,19 +146,20 @@ $(document).ready(function(){
                 }
             });
 
+
             jsEditor.on('change',function() {
-                var item = bgnSmJS.jsList[i];
                 item.codeString = jsEditor.getValue();
                 try{
                     item.function = new Function("return ("+jsEditor.getValue()+")")();
+                    compileErrorModule(false,item);
                 } catch(error){
                     item.functionError = error;
+                    compileErrorModule(true,item);
                 }
 
             });
 
-
-            $(codeReader).find('.fullscreen').on('click',function() {
+            item.templateDom.find('.fullscreen').on('click',function() {
                 if(!jsEditor.getOption("fullScreen")){
                     if(toggle.state === undefined && document.body.clientWidth >= 986)
                         toggle.state = true;
@@ -149,6 +179,7 @@ $(document).ready(function(){
 
             });
 
+            addTestingModule(item);
 
         });
 
@@ -163,10 +194,6 @@ $(document).ready(function(){
 
         });
 
-
-        bgnSmJS.jsListForEach(function(item,i) {
-            addTestingModule(item);
-        });
     })
     .catch(function(error) {
         console.log(error);

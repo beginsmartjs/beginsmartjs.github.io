@@ -1,9 +1,9 @@
 'use strict';
 
 function apiServices() {
-    var apiServices = {};
+    var as = {};
 
-    apiServices.getMetaCodes = function() {
+    as.getMetaCodes = function() {
     	var dfd = jQuery.Deferred();
 
 		$.get("./jsons/meta-codes.json")
@@ -17,7 +17,7 @@ function apiServices() {
         return dfd.promise();
     }
 
-    apiServices.getCodeBoxTemplate = function() {
+    as.getCodeBoxTemplate = function() {
     	var dfd = jQuery.Deferred();
 
 		$.get("./templates/code-box.html")
@@ -32,7 +32,7 @@ function apiServices() {
     }
 
 
-    apiServices.getCode = function(id) {
+    as.getCode = function(id) {
     	var dfd = jQuery.Deferred();
 
 		$.get("./js/listofcodes/"+id+".js")
@@ -46,5 +46,5 @@ function apiServices() {
         return dfd.promise();
     }
 
-    return apiServices;
+    return as;
 };
