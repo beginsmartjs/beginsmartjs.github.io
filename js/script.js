@@ -87,6 +87,8 @@ $(document).ready(function(){
 
         $('.code-reader').each(function(i,codeReader) {
             var textAreaDom = $(codeReader).find('textarea')[0];
+
+
             var jsEditor = CodeMirror.fromTextArea(textAreaDom, {
                 lineNumbers: true,
                 mode: 'javascript',
@@ -113,6 +115,17 @@ $(document).ready(function(){
                         if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
                     }
                 }
+            });
+
+            jsEditor.on('change',function() {
+                var item = bgnSmJS.jsList[i];
+                item.codeString = jsEditor.getValue();
+                try{
+                    item.function = new Function("return ("+jsEditor.getValue()+")")();
+                } catch(error){
+                    item.functionError = error;
+                }
+
             });
 
 
